@@ -9,7 +9,28 @@ import SwiftUI
 
 struct PokemonItemView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            RoundedRectangle(cornerRadius: 16)
+                .fill(.white)
+                .border(.blue)
+            VStack {
+                Image("pokeball")
+                    .resizable()
+                    .frame(
+                        width: 50,
+                        height: 50
+                    )
+                Text("Name")
+                    .font(.headline)
+                    .bold()
+                    .foregroundColor(.black)
+            }
+            .frame(
+                maxWidth: .infinity
+            )
+        }
+        .listRowSeparator(.hidden)
+        .listRowBackground(Color.white)
     }
 }
 

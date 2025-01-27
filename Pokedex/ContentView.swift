@@ -8,14 +8,25 @@
 import SwiftUI
 
 struct ContentView: View {
+    
     var body: some View {
+        
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            
+            // Tab view
+            ZStack {
+                TabView {
+                    Tab("Home", systemImage: "house") {
+                        PokemonListView()
+                    }
+                    Tab("Favoritos", systemImage: "heart") {
+                        EmptyView()
+                    }
+                }
+            }
+            
         }
-        .padding()
+        .background(.white)
     }
 }
 

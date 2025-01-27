@@ -8,13 +8,26 @@
 import SwiftUI
 
 struct PokemonListView: View {
+    
+    let columns = [
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
+    
     var body: some View {
-        List {
-            ForEach(1..<11) { index in
-                Text("\(index)")
+        ScrollView {
+            LazyVGrid(columns: columns, spacing: 16) {
+                ForEach(1..<31) { index in
+                    PokemonItemView()
+                }
             }
+            .padding()
         }
-        .listStyle(.plain)
+        .frame(
+            maxWidth: .infinity,
+            maxHeight: .infinity,
+            alignment: .top
+        )
         .background(.white)
     }
 }
