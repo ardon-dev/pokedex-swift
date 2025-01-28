@@ -9,6 +9,9 @@ import SwiftUI
 
 struct PokemonListView: View {
     
+    @ObservedObject
+    private var viewModel = PokemonListViewModel()
+    
     let columns = [
         GridItem(.flexible()),
         GridItem(.flexible())
@@ -17,8 +20,8 @@ struct PokemonListView: View {
     var body: some View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 16) {
-                ForEach(1..<31) { index in
-                    PokemonItemView()
+                ForEach(viewModel.pokemons) { pokemon in
+                    PokemonItemView(pokemon: pokemon)
                 }
             }
             .padding()
@@ -28,7 +31,7 @@ struct PokemonListView: View {
             maxHeight: .infinity,
             alignment: .top
         )
-        .background(.white)
+        .background(.appBackground)
     }
 }
 

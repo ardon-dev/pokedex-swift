@@ -6,21 +6,24 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct PokemonItemView: View {
+    
+    var pokemon: Pokemon? = nil
+    
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 16)
                 .fill(.white)
-                .border(.blue)
             VStack {
-                Image("pokeball")
+                WebImage(url: URL(string: pokemon?.getSprite(index: 1) ?? ""))
                     .resizable()
                     .frame(
                         width: 50,
                         height: 50
                     )
-                Text("Name")
+                Text(pokemon?.name ?? "")
                     .font(.headline)
                     .bold()
                     .foregroundColor(.black)
@@ -28,12 +31,16 @@ struct PokemonItemView: View {
             .frame(
                 maxWidth: .infinity
             )
+            .padding()
         }
+        .aspectRatio(1.0, contentMode: .fit)
         .listRowSeparator(.hidden)
         .listRowBackground(Color.white)
     }
 }
 
 #Preview {
-    PokemonItemView()
+    PokemonItemView(
+        pokemon: Pokemon(name: "Venusaur", url: "http")
+    )
 }

@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		8FFDB9A12D4854140022B421 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8FFDB9A02D4854140022B421 /* SDWebImageSwiftUI */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		8F04CFC22D470A560029C07C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8FFDB9A12D4854140022B421 /* SDWebImageSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +117,7 @@
 			);
 			name = Pokedex;
 			packageProductDependencies = (
+				8FFDB9A02D4854140022B421 /* SDWebImageSwiftUI */,
 			);
 			productName = Pokedex;
 			productReference = 8F04CFB12D470A540029C07C /* Pokedex.app */;
@@ -195,6 +201,9 @@
 			);
 			mainGroup = 8F04CFA82D470A540029C07C;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				8FFDB99F2D4854140022B421 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 8F04CFB22D470A540029C07C /* Products */;
 			projectDirPath = "";
@@ -552,6 +561,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8FFDB99F2D4854140022B421 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8FFDB9A02D4854140022B421 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8FFDB99F2D4854140022B421 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8F04CFA92D470A540029C07C /* Project object */;
 }
