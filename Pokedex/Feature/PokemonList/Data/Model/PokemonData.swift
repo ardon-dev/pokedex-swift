@@ -25,8 +25,19 @@ struct Pokemon: Identifiable, Codable {
         self.url = url
     }
     
-    func getSprite(index: Int) -> String {
-        return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/\(index).png"
+    func getSprite() -> String {
+        if let url = URL(string: self.url) {
+            let path = url.path
+            let components = path.split(separator: "/")
+            if let lastComponent = components.last, let number = Int(lastComponent) {
+                return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/\(number).png"
+            } else {
+                return ""
+            }
+        } else {
+            return ""
+        }
+        
     }
     
 }

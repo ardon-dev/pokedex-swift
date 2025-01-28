@@ -10,16 +10,26 @@ import Foundation
 class PokemonListViewModel: ObservableObject {
     
     @Published
+    var searchText: String = ""
+    
+    @MainActor
+    @Published
     var pokemons: [Pokemon]? = []
     
+    @MainActor
     @Published
     var error: String? = nil
     
     func getPokemonList() async {
         if let result = await PokemonRepository.getPokemonList() {
-            pokemons = result.results
+            await MainActor.run {
+                pokemons = result.results
+            }
         } else {
-            error = "Error"
+            await MainActor.run {
+                error = "Error"
+            }
+           
         }
     }
     

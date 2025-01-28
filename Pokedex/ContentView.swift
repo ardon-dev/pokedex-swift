@@ -14,24 +14,17 @@ struct ContentView: View {
     }
     
     var body: some View {
-        NavigationStack {
-            VStack {
-                ZStack {
-                    TabView {
-                        Tab("Home", systemImage: "house") {
-                            PokemonListView()
-                        }
-                        Tab("Favoritos", systemImage: "heart") {
-                            EmptyView()
-                        }
+        VStack {
+            ZStack {
+                TabView {
+                    Tab("Home", systemImage: "house") {
+                        PokemonListView()
                     }
-                }                
+                    Tab("Favoritos", systemImage: "heart") {
+                        EmptyView()
+                    }
+                }
             }
-            .background(.white)
-            .navigationTitle("Pokemon")
-            .toolbarTitleDisplayMode(.inlineLarge)
-            .toolbarBackground(.background, for: .navigationBar)
-            .toolbarBackground(.visible, for: .navigationBar)
         }
     }
 }

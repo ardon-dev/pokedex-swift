@@ -11,43 +11,53 @@ struct PokemonListView: View {
     
     @ObservedObject
     private var viewModel = PokemonListViewModel()
-    
+        
     let columns = [
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
     
     var body: some View {
-        ScrollView {
-            LazyVGrid(columns: columns, spacing: 16) {
-                ForEach(
-                    Array(viewModel.pokemons!.enumerated()),
-                    id: \.offset
-                ) { index, pokemon in
-                    NavigationLink(
-                        destination: {
-                            Text(pokemon.name)
+        NavigationView {
+            ScrollView {
+                LazyVGrid(columns: columns, spacing: 8) {
+                    let filteredPokemon = if viewModel.searchText.isEmpty {
+                        viewModel.pokemons
+                    } else {
+                        viewModel.pokemons?.filter {
+                            $0.name.localizedCaseInsensitiveContains(viewModel.searchText)
                         }
-                    ) {
-                        PokemonItemView(
-                            index: index + 1,
-                            pokemon: pokemon
-                        )
+                    }
+                    
+                    ForEach(filteredPokemon ?? []) { pokemon in
+                        NavigationLink(
+                            destination: {
+                                Text(pokemon.name)
+                            }
+                        ) {
+                            PokemonItemView(pokemon: pokemon)
+                        }
                     }
                 }
+                .padding()
             }
-            .padding()
-        }
-        .frame(
-            maxWidth: .infinity,
-            maxHeight: .infinity,
-            alignment: .top
-        )
-        .background(.appBackground)
-        .onAppear {
-            Task {
-                await viewModel.getPokemonList()
+            .frame(
+                maxWidth: .infinity,
+                maxHeight: .infinity,
+                alignment: .top
+            )
+            .background(.appBackground)
+            .onAppear {
+                Task {
+                    await viewModel.getPokemonList()
+                }
             }
+            .navigationTitle("Pokemon")
+            .navigationBarTitleDisplayMode(.large)
+            .searchable(
+                text: $viewModel.searchText,
+                prompt: Text("Buscar pokemon")
+            )
         }
     }
 }
