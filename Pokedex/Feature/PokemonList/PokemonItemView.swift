@@ -10,6 +10,7 @@ import SDWebImageSwiftUI
 
 struct PokemonItemView: View {
     
+    var index: Int
     var pokemon: Pokemon? = nil
     
     var body: some View {
@@ -17,16 +18,17 @@ struct PokemonItemView: View {
             RoundedRectangle(cornerRadius: 16)
                 .fill(.white)
             VStack {
-                WebImage(url: URL(string: pokemon?.getSprite(index: 1) ?? ""))
+                WebImage(url: URL(string: pokemon?.getSprite(index: index) ?? ""))
                     .resizable()
                     .frame(
                         width: 50,
                         height: 50
                     )
-                Text(pokemon?.name ?? "")
+                Text((pokemon?.name ?? "").capitalized)
                     .font(.headline)
                     .bold()
                     .foregroundColor(.black)
+                    .padding(.top, 8)
             }
             .frame(
                 maxWidth: .infinity
@@ -41,6 +43,7 @@ struct PokemonItemView: View {
 
 #Preview {
     PokemonItemView(
+        index: 1,
         pokemon: Pokemon(name: "Venusaur", url: "http")
     )
 }

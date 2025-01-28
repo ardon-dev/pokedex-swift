@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8FFDB9A12D4854140022B421 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8FFDB9A02D4854140022B421 /* SDWebImageSwiftUI */; };
+		8FFDB9A42D4858740022B421 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 8FFDB9A32D4858740022B421 /* Alamofire */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,6 +27,19 @@
 			remoteInfo = Pokedex;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8FFDB9F52D485F760022B421 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		8F04CFB12D470A540029C07C /* Pokedex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokedex.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -57,6 +71,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8FFDB9A12D4854140022B421 /* SDWebImageSwiftUI in Frameworks */,
+				8FFDB9A42D4858740022B421 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,6 +122,7 @@
 				8F04CFAD2D470A540029C07C /* Sources */,
 				8F04CFAE2D470A540029C07C /* Frameworks */,
 				8F04CFAF2D470A540029C07C /* Resources */,
+				8FFDB9F52D485F760022B421 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -118,6 +134,7 @@
 			name = Pokedex;
 			packageProductDependencies = (
 				8FFDB9A02D4854140022B421 /* SDWebImageSwiftUI */,
+				8FFDB9A32D4858740022B421 /* Alamofire */,
 			);
 			productName = Pokedex;
 			productReference = 8F04CFB12D470A540029C07C /* Pokedex.app */;
@@ -203,6 +220,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				8FFDB99F2D4854140022B421 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+				8FFDB9A22D4858740022B421 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 8F04CFB22D470A540029C07C /* Products */;
@@ -571,6 +589,14 @@
 				minimumVersion = 3.1.3;
 			};
 		};
+		8FFDB9A22D4858740022B421 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire/";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.10.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -578,6 +604,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8FFDB99F2D4854140022B421 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
 			productName = SDWebImageSwiftUI;
+		};
+		8FFDB9A32D4858740022B421 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8FFDB9A22D4858740022B421 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

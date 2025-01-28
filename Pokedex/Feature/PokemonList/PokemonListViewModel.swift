@@ -10,9 +10,17 @@ import Foundation
 class PokemonListViewModel: ObservableObject {
     
     @Published
-    var pokemons: [Pokemon] = [
-        Pokemon(name: "Bulbasaur", url: "http"),
-        Pokemon(name: "Venusaur", url: "http")
-    ]
+    var pokemons: [Pokemon]? = []
+    
+    @Published
+    var error: String? = nil
+    
+    func getPokemonList() async {
+        if let result = await PokemonRepository.getPokemonList() {
+            pokemons = result.results
+        } else {
+            error = "Error"
+        }
+    }
     
 }

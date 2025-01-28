@@ -7,12 +7,20 @@
 
 import Foundation
 
-struct Pokemon: Identifiable {
+struct PokemonResponse: Codable {
+    var results: [Pokemon]? = nil
+}
+
+struct Pokemon: Identifiable, Codable {
     var id = UUID()
-    var name: String?
-    var url: String?
+    var name: String
+    var url: String
     
-    init(name: String? = nil, url: String? = nil) {
+    private enum CodingKeys: String, CodingKey {
+        case name, url
+    }
+    
+    init(name: String, url: String) {
         self.name = name
         self.url = url
     }

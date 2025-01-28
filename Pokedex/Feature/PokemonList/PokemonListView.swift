@@ -20,8 +20,20 @@ struct PokemonListView: View {
     var body: some View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 16) {
-                ForEach(viewModel.pokemons) { pokemon in
-                    PokemonItemView(pokemon: pokemon)
+                ForEach(
+                    Array(viewModel.pokemons!.enumerated()),
+                    id: \.offset
+                ) { index, pokemon in
+                    NavigationLink(
+                        destination: {
+                            Text(pokemon.name)
+                        }
+                    ) {
+                        PokemonItemView(
+                            index: index + 1,
+                            pokemon: pokemon
+                        )
+                    }
                 }
             }
             .padding()
@@ -32,6 +44,11 @@ struct PokemonListView: View {
             alignment: .top
         )
         .background(.appBackground)
+        .onAppear {
+            Task {
+                await viewModel.getPokemonList()
+            }
+        }
     }
 }
 
