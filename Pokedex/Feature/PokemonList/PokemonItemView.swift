@@ -17,12 +17,20 @@ struct PokemonItemView: View {
             RoundedRectangle(cornerRadius: 16)
                 .fill(.white)
             VStack {
-                WebImage(url: URL(string: pokemon?.getSprite() ?? ""))
-                    .resizable()
-                    .frame(
-                        width: 50,
-                        height: 50
-                    )
+                WebImage(
+                    url: URL(string: pokemon?.getSprite() ?? ""),
+                    content: { image in
+                        image
+                    },
+                    placeholder: {
+                        ProgressView()
+                    }
+                )
+                .resizable()
+                .frame(
+                    width: 50,
+                    height: 50
+                )
                 Text((pokemon?.name ?? "").capitalized)
                     .font(.headline)
                     .bold()
@@ -42,6 +50,9 @@ struct PokemonItemView: View {
 
 #Preview {
     PokemonItemView(
-        pokemon: Pokemon(name: "Venusaur", url: "https://pokeapi.co/api/v2/pokemon/1/")
+        pokemon: Pokemon(
+            name: "Venusaur",
+            url: "https://pokeapi.co/api/v2/pokemon/1/"
+        )
     )
 }

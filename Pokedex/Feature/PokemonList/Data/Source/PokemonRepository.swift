@@ -14,9 +14,13 @@ class PokemonRepository {
     
     static func getPokemonList() async -> PokemonResponse? {
         do {
+            let parameters = [
+                "offset": "0",
+                "limit": "1500"
+            ]
             let data = try await NetworkManager.shared.get(
                 endpoint: "pokemon",
-                parameters: nil
+                parameters: parameters
             )
             print(data)
             let result: PokemonResponse? = try self.parseData(data: data)

@@ -56,6 +56,7 @@ struct PokemonListView: View {
             .navigationBarTitleDisplayMode(.large)
             .searchable(
                 text: $viewModel.searchText,
+                placement: .navigationBarDrawer(displayMode: .always),
                 prompt: Text("Buscar pokemon")
             )
         }
