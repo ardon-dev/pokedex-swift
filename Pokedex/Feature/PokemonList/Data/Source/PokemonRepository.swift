@@ -31,6 +31,21 @@ class PokemonRepository {
         }
     }
     
+    static func getPokemon(pokemonId: String) async -> PokemonDetailResponse? {
+        do {
+            let data = try await NetworkManager.shared.get(
+                endpoint: "pokemon/\(pokemonId)",
+                parameters: nil
+            )
+            print(data)
+            let result: PokemonDetailResponse? = try self.parseData(data: data)
+            return result
+        } catch let error {
+            print(error.localizedDescription)
+            return nil
+        }
+    }
+    
     private static func parseData<T: Decodable>(data: Data) throws -> T{
         guard let decodedData = try? JSONDecoder().decode(T.self, from: data)
         else {

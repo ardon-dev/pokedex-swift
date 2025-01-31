@@ -18,7 +18,7 @@ struct PokemonItemView: View {
                 .fill(.white)
             VStack {
                 WebImage(
-                    url: URL(string: pokemon?.getSprite() ?? ""),
+                    url: URL(string: pokemon?.getSpriteUrl() ?? ""),
                     content: { image in
                         image
                     },
