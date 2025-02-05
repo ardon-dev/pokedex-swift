@@ -18,7 +18,8 @@ struct PokemonDetailView: View {
     @Query()
     private var localPokemons: [PokemonLocalData]
     
-    var pokemonId: String
+    var pokemonName: String
+    var pokemonUrl: String
     
     @ObservedObject
     private var viewModel: PokemonDetailViewModel = PokemonDetailViewModel()
@@ -92,13 +93,13 @@ struct PokemonDetailView: View {
         .background(.appBackground)
         .onAppear {
             Task {
-                await viewModel.getPokemon(pokemonId: pokemonId)
+                await viewModel.getPokemon(pokemonId: pokemonName)
             }
         }
-        .navigationTitle(pokemonId.capitalized)
+        .navigationTitle(pokemonName.capitalized)
         .toolbar {
             ToolbarItemGroup {
-                if let localPokemon = localPokemons.first(where: { $0.name == pokemonId}) {
+                if let localPokemon = localPokemons.first(where: { $0.name == pokemonName}) {
                     Button("", systemImage: "heart.fill") {
                         context.delete(localPokemon)
                     }
@@ -106,8 +107,8 @@ struct PokemonDetailView: View {
                     Button("", systemImage: "heart") {
                         context.insert(
                             PokemonLocalData(
-                                name: pokemonId,
-                                url: ""
+                                name: pokemonName,
+                                url: pokemonUrl
                             )
                         )
                     }
@@ -257,5 +258,5 @@ struct PokemonDetaiAbilitiesView: View {
 }
 
 #Preview {
-    PokemonDetailView(pokemonId: "bulbasaur")
+    PokemonDetailView(pokemonName: "bulbasaur", pokemonUrl: "")
 }

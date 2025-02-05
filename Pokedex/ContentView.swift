@@ -21,7 +21,7 @@ struct ContentView: View {
                         PokemonListView()
                     }
                     Tab("Favoritos", systemImage: "heart") {
-                        EmptyView()
+                        FavoriteListView()
                     }
                 }
             }

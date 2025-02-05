@@ -32,7 +32,10 @@ struct PokemonListView: View {
                     ForEach(filteredPokemon ?? []) { pokemon in
                         NavigationLink(
                             destination: {
-                                PokemonDetailView(pokemonId: pokemon.name)
+                                PokemonDetailView(
+                                    pokemonName: pokemon.name,
+                                    pokemonUrl: pokemon.url
+                                )
                             }
                         ) {
                             PokemonItemView(pokemon: pokemon)
