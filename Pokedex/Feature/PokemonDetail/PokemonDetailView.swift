@@ -8,8 +8,15 @@
 import SwiftUI
 import SDWebImageSwiftUI
 import Charts
+import SwiftData
 
 struct PokemonDetailView: View {
+    
+    @Environment(\.modelContext)
+    private var context
+    
+    @Query()
+    private var localPokemons: [PokemonLocalData]
     
     var pokemonId: String
     
@@ -89,6 +96,24 @@ struct PokemonDetailView: View {
             }
         }
         .navigationTitle(pokemonId.capitalized)
+        .toolbar {
+            ToolbarItemGroup {
+                if let localPokemon = localPokemons.first(where: { $0.name == pokemonId}) {
+                    Button("", systemImage: "heart.fill") {
+                        context.delete(localPokemon)
+                    }
+                } else {
+                    Button("", systemImage: "heart") {
+                        context.insert(
+                            PokemonLocalData(
+                                name: pokemonId,
+                                url: ""
+                            )
+                        )
+                    }
+                }
+            }
+        }
     }
 }
 
