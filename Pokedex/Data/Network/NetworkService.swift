@@ -8,12 +8,9 @@
 import Foundation
 import Alamofire
 
-private let API_BASE_URL = "https://pokeapi.co/api/v2/"
-
-public class NetworkManager {
+public class NetworkService {
     
-    public static let shared = NetworkManager()
-    private init() {}
+    public static let shared = NetworkService()
     
     private let maxWaitTime = 15.0
     var commonHeaders: HTTPHeaders = [
@@ -26,7 +23,7 @@ public class NetworkManager {
     ) async throws -> Data {
         return try await withCheckedThrowingContinuation { continuation in
             AF.request(
-                API_BASE_URL + endpoint,
+                endpoint,
                 parameters: parameters,
                 headers: commonHeaders,
                 requestModifier: {

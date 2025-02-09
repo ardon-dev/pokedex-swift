@@ -38,7 +38,11 @@ struct FavoriteListView: View {
                         ForEach(localPokemons) { pokemon in
                             NavigationLink(
                                 destination: {
-                                    PokemonDetailView(pokemonName: pokemon.name, pokemonUrl: pokemon.url)
+                                    PokemonDetailView(
+                                        viewModel: PokedexApp().pokemonDetailViewModel,
+                                        pokemonName: pokemon.name,
+                                        pokemonUrl: pokemon.url
+                                    )
                                 }
                             ) {
                                 PokemonItemView(pokemon: Pokemon(name: pokemon.name, url: pokemon.url))

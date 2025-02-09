@@ -9,6 +9,12 @@ import Foundation
 
 class PokemonDetailViewModel: ObservableObject {
     
+    private let getPokemonUseCase: GetPokemonUseCase
+    
+    init(getPokemonUseCase: GetPokemonUseCase) {
+        self.getPokemonUseCase = getPokemonUseCase
+    }
+    
     @MainActor
     @Published
     var pokemonDetail: PokemonDetailResponse? = nil
@@ -17,8 +23,8 @@ class PokemonDetailViewModel: ObservableObject {
     @Published
     var error: String? = nil
     
-    func getPokemon(pokemonId: String) async {
-        if let result = await PokemonRepository.getPokemon(pokemonId: pokemonId) {
+    func getPokemon(name: String) async {
+        if let result = await getPokemonUseCase.execute(name: name) {
             await MainActor.run {
                 pokemonDetail = result
             }

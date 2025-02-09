@@ -9,6 +9,8 @@ import Foundation
 
 class PokemonListViewModel: ObservableObject {
     
+    private let getPokemonListUseCase: GetPokemonListUseCase
+    
     @Published
     var searchText: String = ""
     
@@ -20,14 +22,18 @@ class PokemonListViewModel: ObservableObject {
     @Published
     var error: String? = nil
     
+    init(getPokemonListUseCase: GetPokemonListUseCase) {
+        self.getPokemonListUseCase = getPokemonListUseCase
+    }
+    
     func getPokemonList() async {
-        if let result = await PokemonRepository.getPokemonList() {
+        if let result = await getPokemonListUseCase.execute() {
             await MainActor.run {
                 pokemons = result.results
             }
         } else {
             await MainActor.run {
-                error = "Error"
+                error = error?.description
             }
            
         }

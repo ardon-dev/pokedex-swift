@@ -18,7 +18,9 @@ struct ContentView: View {
             ZStack {
                 TabView {
                     Tab("Home", systemImage: "house") {
-                        PokemonListView()
+                        PokemonListView(
+                            viewModel: PokedexApp().pokemonListViewModel
+                        )
                     }
                     Tab("Favoritos", systemImage: "heart") {
                         FavoriteListView()

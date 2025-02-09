@@ -10,9 +10,13 @@ import SwiftUI
 struct PokemonListView: View {
     
     @ObservedObject
-    private var viewModel = PokemonListViewModel()
+    private var viewModel: PokemonListViewModel
+    
+    init(viewModel: PokemonListViewModel) {
+        self.viewModel = viewModel
+    }
         
-    let columns = [
+    private let columns = [
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
@@ -33,6 +37,7 @@ struct PokemonListView: View {
                         NavigationLink(
                             destination: {
                                 PokemonDetailView(
+                                    viewModel: PokedexApp().pokemonDetailViewModel,
                                     pokemonName: pokemon.name,
                                     pokemonUrl: pokemon.url
                                 )
@@ -67,5 +72,7 @@ struct PokemonListView: View {
 }
 
 #Preview {
-    PokemonListView()
+    PokemonListView(
+        viewModel: PokedexApp().pokemonListViewModel
+    )
 }
